@@ -1,41 +1,42 @@
 import sys
-#Libraries
+# Libraries
 from PyQt5.QtWidgets import *
 from PyQt5.QtWebEngineWidgets import *
 from PyQt5.QtCore import *
+from PyQt5.QtCore import *
+
 
 class Window(QMainWindow):
 
     def __init__(self):
-        super(Window,self).__init__()
-        #New WebView
+        super(Window, self).__init__()
+        # New WebView
         self.browser = QWebEngineView()
-        #Set URL
+        # Set URL
         self.browser.setUrl(QUrl('https://google.com'))
-
         self.setCentralWidget(self.browser)
 
-        self.showMinimized()
-        #ToolBar
+        self.showMaximized()
+        # ToolBar
         navbar = QToolBar()
         self.addToolBar(navbar)
-        #Back button
-        prevBtn = QAction('Back',self)
+        # Back button
+        prevBtn = QAction('Back', self)
         prevBtn.triggered.connect(self.browser.back)
         navbar.addAction(prevBtn)
-        #Forward Button
-        nextBtn = QAction('Forward',self)
+        # Forward Button
+        nextBtn = QAction('Forward', self)
         nextBtn.triggered.connect(self.browser.forward)
         navbar.addAction(nextBtn)
-        #Refresh Button
-        refreshBtn = QAction('Refresh',self)
+        # Refresh Button
+        refreshBtn = QAction('Refresh', self)
         refreshBtn.triggered.connect(self.browser.reload)
         navbar.addAction(refreshBtn)
-        #Home Button
-        homeBtn = QAction('Home',self)
+        # Home Button
+        homeBtn = QAction('Home', self)
         homeBtn.triggered.connect(self.home)
         navbar.addAction(homeBtn)
-        #Search Bar
+        # Search Bar
         self.searchBar = QLineEdit()
         self.searchBar.returnPressed.connect(self.loadUrl)
         navbar.addWidget(self.searchBar)
@@ -54,11 +55,12 @@ class Window(QMainWindow):
 
 MyApp = QApplication(sys.argv)
 
-#App Name
+
+# App Name
 QApplication.setApplicationName('Browser-py')
 
-#New window
+# New window
 window = Window()
 
-#Execute main app.
+# Execute main app.
 MyApp.exec_()
